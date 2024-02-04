@@ -256,25 +256,3 @@ CALL refresh_movie_data();
 
 SELECT * FROM detailed_movie_revenue LIMIT 160;
 SELECT * FROM summary_genre_revenue LIMIT 17;
-_________________________________________________________________________________________
-A commonly used tool for scheduling jobs in a PostgreSQL environment is pgAgent. It's a job scheduler for PostgreSQL that allows you to schedule PostgreSQL SQL scripts and shell commands to be executed at specified times or intervals. Another option could be using Cron Jobs on a Unix/Linux system, where you can schedule the execution of this stored procedure.
-
-
-Analysis of Top-Performing Movies by Genre: The report identifies the top ten highest-grossing movies in each genre, providing a clear picture of which movies are currently most profitable. The strategic insights that can be drawn from their performance can be used to guide future content acquisition and promotional activities. The genre-wise breakdown allows for targeted analysis, enabling a focused strategy for each category of content in the increasingly fragmented media consumption landscape.
-
-    Detailed Table (detailed_movie_revenue): Includes film_id (integer), title (string), genre (string), release_year (integer), and total_revenue (text formatted as a dollar value).
-    Summary Table (summary_genre_revenue): Contains genre (string) and top_ten_movies (text, a concatenated list of movie titles).
-
-    Detailed Table: film_id (integer), title (varchar/string), genre (varchar/string), release_year (integer), total_revenue (text)
-    Summary Table: genre (varchar/string), top_ten_movies (text)
-
-    For the Detailed Table: Primarily the film, film_category, category, inventory, rental, and payment tables.
-    For the Summary Table: Data is derived from the detailed_movie_revenue table.
-
-The total_revenue field in the detailed_movie_revenue table requires a custom transformation. The format_dollar function is used to convert numerical revenue data into a formatted string with a dollar sign for readability to avaoid any confusion.
-
-    Detailed Table: Provides in-depth information on individual film performance, including revenue. Useful for analyzing which specific films are most successful financially within each genre.
-    Summary Table: Offers a quick, high-level view of the top-performing films in each genre. Useful for strategic decisions about which genres are most lucrative and merit further investment or marketing focus.
-
-
-pgAgent is a job scheduling agent for PostgreSQL, used for executing stored procedures, SQL statements, and shell scripts. It runs as a daemon on Linux systems, checking for scheduled jobs in the database, but requires manual installation as it's not included with pgAdmin 4 by default. Opting for a monthly job execution frequency with pgAgent is ideal for analyzing movie industry trends, offering a balance between keeping data current for strategic decisions and maintaining system efficiency, without overwhelming the database with too frequent updates.
